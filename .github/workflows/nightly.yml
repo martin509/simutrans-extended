@@ -21,11 +21,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           run_json=$(curl -sf -H "Authorization: Bearer $GH_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/ci.yml/runs?branch=master&status=success&per_page=1")
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/ci.yml/runs?branch=new-industry-generation&status=success&per_page=1")
           latest_sha=$(echo "$run_json" | jq -r '.workflow_runs[0].head_sha // empty')
           run_id=$(echo "$run_json" | jq -r '.workflow_runs[0].id // empty')
           if [[ -z "$latest_sha" ]]; then
-            echo "::error::No successful ci.yml run found on master"
+            echo "::error::No successful ci.yml run found on new-industry-generation"
             exit 1
           fi
           echo "commit_hash=$latest_sha" >> "$GITHUB_OUTPUT"
@@ -185,7 +185,7 @@ jobs:
         include:
           - owner: jamespetts
             repo: simutrans-pak128.britain
-            ref: master
+            ref: new-industry-generation
             workflow_file_name: deploy-nightly.yml
             token: CI_TOKEN
 #         - owner: Flemmbrav
