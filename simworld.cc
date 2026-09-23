@@ -9312,7 +9312,7 @@ void karte_t::recalc_idp() {
 	
 	}
 	else {
-		average_overproduction =  total_prod * 100
+		average_overproduction = total_prod * 100;
 	}
 
 	uint32 target_density = (consumer_density * average_overproduction) / 100;
