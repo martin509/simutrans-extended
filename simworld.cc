@@ -9318,6 +9318,7 @@ void karte_t::recalc_idp() {
 	uint32 target_density = (consumer_density * average_overproduction) / 100;
 
 	sint32 difference = target_density - consumer_density; //compensate for an increase in consumers increasing the overall industry density of the world
+	old_density = max(old_density, 1); //prevent division by zero
 	target_density = ((old_density - difference) * target_density) / old_density;
 	target_density = ((uint64)target_density * 1000000ll) / finance_history_month[0][WORLD_CITIZENS];
 
