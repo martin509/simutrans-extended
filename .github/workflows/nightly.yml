@@ -3,6 +3,12 @@ on:
   schedule:
     - cron: '0 2 * * *'
   workflow_dispatch:
+    inputs:
+      simutrans_branch:
+        description: 'The branch to build for the nightly workflow.'
+        type: string
+        default: 'new-industry-generation'
+        required: true
 
 jobs:
   check-updates:
@@ -21,11 +27,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           run_json=$(curl -sf -H "Authorization: Bearer $GH_TOKEN" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/ci.yml/runs?branch=new-industry-generation&status=success&per_page=1")
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/ci.yml/runs?branch=${{inputs.simutrans_branch}}&status=success&per_page=1")
           latest_sha=$(echo "$run_json" | jq -r '.workflow_runs[0].head_sha // empty')
           run_id=$(echo "$run_json" | jq -r '.workflow_runs[0].id // empty')
           if [[ -z "$latest_sha" ]]; then
-            echo "::error::No successful ci.yml run found on new-industry-generation"
+            echo "::error::No successful ci.yml run found on branch"
             exit 1
           fi
           echo "commit_hash=$latest_sha" >> "$GITHUB_OUTPUT"
