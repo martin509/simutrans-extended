@@ -554,7 +554,7 @@ sint32 rail_vehicle_t::activate_choose_signal(const uint16 start_block, uint16 &
 	{
 		// try to reserve the whole route
 		cnv->update_route(start_block, target_rt);
-		blocks = block_reserver(route, start_block, modified_sighting_distance_tiles, next_signal_index, 100000, true, false, true, false, false, false, brake_steps);
+		blocks = block_reserver(route, start_block, modified_sighting_distance_tiles, next_signal_index, 1, true, false, true, false, false, false, brake_steps);
 		if(!blocks)
 		{
 			target_halt = halthandle_t();
