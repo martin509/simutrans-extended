@@ -554,9 +554,9 @@ sint32 rail_vehicle_t::activate_choose_signal(const uint16 start_block, uint16 &
 	{
 		// try to reserve the whole route
 		cnv->update_route(start_block, target_rt);
-        
+
         //is there a signal before the end of the part route?
-        if(((break_index == start_block + 1) && next_signal_index != INVALID_INDEX ) || next_signal_index < break_index) 
+        if(((break_index == start_block + 1) && next_signal_index != INVALID_INDEX ) || next_signal_index < break_index)
         { //if so, only reserve up to the signal
             route_t part_route;
             if (part_route.calc_route((welt, route->at(start_block), target_rt->at(next_signal_index), this, speed_to_kmh(cnv->get_min_top_speed()), cnv->get_highest_axle_load(), cnv->has_tall_vehicles(), cnv->get_tile_length(), SINT64_MAX_VALUE, cnv->get_weight_summary().weight / 1000, koord3d::invalid, direction))
