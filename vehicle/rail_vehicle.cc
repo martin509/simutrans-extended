@@ -558,8 +558,8 @@ sint32 rail_vehicle_t::activate_choose_signal(const uint16 start_block, uint16 &
         { //if so, only reserve up to the signal
             part_route = calc_route((welt, route->at(start_block), target_rt->at(next_signal_index), this, speed_to_kmh(cnv->get_min_top_speed()), cnv->get_highest_axle_load(), cnv->has_tall_vehicles(), cnv->get_tile_length(), SINT64_MAX_VALUE, cnv->get_weight_summary().weight / 1000, koord3d::invalid, direction)
             blocks = block_reserver(part_route, start_block, modified_sighting_distance_tiles, next_signal_index, 100000, true, false, true, false, false, false, brake_steps);
-        } 
-        else 
+        }
+        else
         {
             blocks = block_reserver(route, start_block, modified_sighting_distance_tiles, next_signal_index, 100000, true, false, true, false, false, false, brake_steps);
         }
