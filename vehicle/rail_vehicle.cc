@@ -557,7 +557,7 @@ sint32 rail_vehicle_t::activate_choose_signal(const uint16 start_block, uint16 &
 
         //is there a signal before the end of the part route?
         uint16 next_signal_2_index = 0;
-        find_next_signal(&target_rt,  1, &next_signal_2_index);
+        find_next_signal(&target_rt,  1, next_signal_2_index);
         if(target_halt.is_bound() ? next_signal_2_index > 0 : next_signal_2_index < break_index)
         { //if so, only reserve up to the signal
             route_t part_route;
