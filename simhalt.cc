@@ -1480,12 +1480,13 @@ void haltestelle_t::step()
 						// before they have got transport, the waiting time registered must be increased
 						// by 4x to reflect an estimate of how long that they would likely have had to
 						// have waited to get transport.
-						waiting_tenths *= 4;
+						/* waiting_tenths *= 4; 
 						linehandle_t account_line = get_preferred_line(tmp.get_zwischenziel(), tmp.get_desc()->get_catg_index(), tmp.get_class());
 						const uint16 airport_wait = (account_convoy.is_bound() && account_convoy->front()->get_typ() == obj_t::air_vehicle) ||
 							(account_line.is_bound() && account_line->get_convoy(0).is_bound() && account_line->get_convoy(0)->front()->get_typ() == obj_t::air_vehicle) ?
 							welt->get_settings().get_min_wait_airport() : 0;
 						add_waiting_time(max(airport_wait, waiting_tenths), tmp.get_zwischenziel(), tmp.get_desc()->get_catg_index(), tmp.get_class());
+                        */
 
 						// The goods/passengers leave.  We must record the lower "in transit" count on factories.
 						fabrik_t::update_transit(tmp, false);
