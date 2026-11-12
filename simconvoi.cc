@@ -8441,7 +8441,10 @@ uint32 convoi_t::calc_reverse_delay() const
 #ifdef MULTI_THREAD
 						 pthread_mutex_lock(&step_convois_mutex);
 #endif
-						 halt->add_waiting_time(waiting_minutes, iter.get_zwischenziel(), iter.get_desc()->get_catg_index(), j);
+						 // Record the wait under the packet's own fare class, which is the class
+						 // whose route tables read it. The accommodation class j can differ when
+						 // the accommodation is reassigned or the packet travels in a lower class.
+						 halt->add_waiting_time(waiting_minutes, iter.get_zwischenziel(), iter.get_desc()->get_catg_index(), iter.get_class());
 #ifdef MULTI_THREAD
 						int error = pthread_mutex_unlock(&step_convois_mutex);
 						assert(error == 0);
